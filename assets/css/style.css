@@ -1763,3 +1763,12 @@ p.form-message.success, p.form-message.error {
   border-color: transparent;
   background: rgba(0,0,0,0.5);
 }
+
+.single-work {
+    transition: transform 0.3s ease;
+}
+
+.single-work:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
