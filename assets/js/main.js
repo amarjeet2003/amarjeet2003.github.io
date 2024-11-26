@@ -41,24 +41,6 @@
     
     //===== Section Menu Active
 
-    var scrollLink = $('.page-scroll');
-        // Active link switching
-        $(window).scroll(function() {
-        var scrollbarLocation = $(this).scrollTop();
-
-        scrollLink.each(function() {
-
-          var sectionOffset = $(this.hash).offset().top - 73;
-
-          if ( sectionOffset <= scrollbarLocation ) {
-            $(this).parent().addClass('active');
-            $(this).parent().siblings().removeClass('active');
-          }
-        });
-    });
-    
-    
-    
     // Parallaxmouse js
     
     function parallaxMouse() {
@@ -111,14 +93,14 @@
     });
     
     
-    //Animate the scroll to yop
-    $('.back-to-top').on('click', function(event) {
-        event.preventDefault();
-        
-        $('html, body').animate({
-            scrollTop: 0,
-        }, 1500);
-    });
+    // //Animate the scroll to yop
+    // $('.back-to-top').on('click', function(event) {
+    //     event.preventDefault();
+    //     window.scrollTo({
+    //         top: 0,
+    //         behavior: 'smooth'
+    //     });
+    // });
     
 
     
