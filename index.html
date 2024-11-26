@@ -32,7 +32,102 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 70px;
+        }
+        
+        /* Existing floating contact styles can stay here */
+        .floating-contact {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
 
+        .floating-contact .btn {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .floating-contact .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
+
+        .floating-contact i {
+            font-size: 24px;
+        }
+
+        .parallax-container {
+            position: relative;
+            overflow: hidden;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .parallax-background {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            font-size: 4rem;
+            pointer-events: none;
+        }
+
+        /* Optimize performance */
+        .layer {
+            will-change: transform;
+            transform-style: preserve-3d;
+        }
+
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .layer {
+                transform: none !important;
+            }
+        }
+
+        /* Update the services area to have relative positioning */
+        .services-area {
+            position: relative;
+            overflow: hidden; /* This will clip any overflow */
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.05;
+            font-size: 2rem;
+            pointer-events: none;
+            z-index: 0;
+            /* Add animation to make it more interesting */
+            animation: float 20s infinite linear;
+        }
+
+        /* Optional: Add a subtle floating animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+    </style>
 
 </head>
 
@@ -94,34 +189,34 @@
         </div> <!-- navigation -->
 
         <div id="parallax" class="header-content d-flex align-items-center">
-            <div class="header-shape shape-one layer" data-depth="0.10">
+            <div class="header-shape shape-one layer" data-depth="0.05">
                 <img src="assets/images/banner/shape/shape-1.png" alt="Shape">
             </div> <!-- header shape -->
-            <div class="header-shape shape-tow layer" data-depth="0.30">
+            <div class="header-shape shape-tow layer" data-depth="0.15">
                 <img src="assets/images/banner/shape/shape-2.png" alt="Shape">
             </div> <!-- header shape -->
-            <div class="header-shape shape-three layer" data-depth="0.40">
+            <div class="header-shape shape-three layer" data-depth="0.20">
                 <img src="assets/images/banner/shape/shape-3.png" alt="Shape">
             </div> <!-- header shape -->
-            <div class="header-shape shape-fore layer" data-depth="0.60">
+            <div class="header-shape shape-fore layer" data-depth="0.30">
                 <img src="assets/images/banner/shape/shape-2.png" alt="Shape">
             </div> <!-- header shape -->
-            <div class="header-shape shape-five layer" data-depth="0.20">
+            <div class="header-shape shape-five layer" data-depth="0.10">
                 <img src="assets/images/banner/shape/shape-1.png" alt="Shape">
             </div> <!-- header shape -->
-            <div class="header-shape shape-six layer" data-depth="0.15">
+            <div class="header-shape shape-six layer" data-depth="0.08">
                 <img src="assets/images/banner/shape/shape-4.png" alt="Shape">
             </div> <!-- header shape -->
-            <div class="header-shape shape-seven layer" data-depth="0.50">
+            <div class="header-shape shape-seven layer" data-depth="0.25">
                 <img src="assets/images/banner/shape/shape-5.png" alt="Shape">
             </div> <!-- header shape -->
-            <div class="header-shape shape-eight layer" data-depth="0.40">
+            <div class="header-shape shape-eight layer" data-depth="0.20">
                 <img src="assets/images/banner/shape/shape-3.png" alt="Shape">
             </div> <!-- header shape -->
-            <div class="header-shape shape-nine layer" data-depth="0.20">
+            <div class="header-shape shape-nine layer" data-depth="0.10">
                 <img src="assets/images/banner/shape/shape-6.png" alt="Shape">
             </div> <!-- header shape -->
-            <div class="header-shape shape-ten layer" data-depth="0.30">
+            <div class="header-shape shape-ten layer" data-depth="0.15">
                 <img src="assets/images/banner/shape/shape-3.png" alt="Shape">
             </div> <!-- header shape -->
             <div class="container">
@@ -129,7 +224,7 @@
                     <div class="col-lg-12">
                         <div class="header-content-right">
                             <h4 class="sub-title">Hello, I'm</h4>
-                            <h1 class="title typewrite" data-period="2000" data-type='[ "Amarjeet Singh", "a Full Stack Developer", "a Problem Solver" ]'>
+                            <h1 class="title typewrite" data-period="2000" data-type='[ "Amarjeet Singh", "a Software Engineer", "a Problem Solver" ]'>
                                 <span class="wrap"></span>
                             </h1>
                             <p>Building scalable systems with Python Django and Golang | Passionate about problem-solving and creating impactful solutions.</p>
@@ -165,18 +260,20 @@
     <!--====== ABOUT PART START ======-->
 
     <section id="about" class="about-area pt-125 pb-130">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-title text-center">
-                        <h2 class="title">About Me</h2>
-                        <p>Highly enthusiastic and passionate about Python, Django, Golang, scripting, and web scraping with Selenium and BS4. Experienced in Generative AI, API development and Cloud (AWS, Azure and Google Cloud). Eager to join dynamic teams, contribute skills, and drive collaborative innovation.</p>
-                    </div> <!-- section title -->
-                </div>
-            </div> <!-- row -->
+        <div class="parallax-container" data-parallax="scroll" data-image-src="assets/images/your-background.jpg">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">  
+                        <div class="section-title text-center">
+                            <h2 class="title">About Me</h2>
+                            <p>Highly enthusiastic and passionate about Python, Django, Golang and scripting. Experienced in Generative AI, API development and DevOps. Eager to join dynamic teams, contribute skills, and drive collaborative innovation.</p>
+                        </div> <!-- section title -->
+                    </div>
+                </div> <!-- row -->
 
-        </div> <!-- row -->
-        </div> <!-- container -->
+            </div> <!-- row -->
+            </div> <!-- container -->
+        </div>
     </section>
 
     <!--====== ABOUT PART ENDS ======-->
@@ -184,92 +281,100 @@
     <!--====== SERVICES PART START ======-->
 
     <section id="service" class="services-area gray-bg pt-125 pb-130">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-7">
-                    <div class="section-title text-center pb-30">
-                        <h2 class="title">My Skills</h2>
-                        <p>Empowering projects with my skills and expertise.</p>
-                    </div> <!-- section title -->
-                </div>
-            </div> <!-- row -->
-            <div id="skills" class="mt-4 py-4 text-center">
+        <div class="parallax-background">
+            <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" style="width: 3rem;"/>
-                        <p style> Python</p>
+                    <div class="col-lg-7">
+                        <div class="section-title text-center pb-30">
+                            <h2 class="title">My Skills</h2>
+                            <p>Empowering projects with my skills and expertise.</p>
+                        </div> <!-- section title -->
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain-wordmark.svg"
-                            style="width: 3rem;" />
-                        <p> Django</p>
+                </div> <!-- row -->
+                <div id="skills" class="mt-4 py-4 text-center">
+                    <div class="row justify-content-center">
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" style="width: 3rem;"/>
+                            <p style> Python</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain-wordmark.svg"
+                                style="width: 3rem;" />
+                            <p> Django</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
+                            <i class="devicon-flask-plain colored" style="font-size: 3rem;"></i>
+                            <p> Flask</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
+                            <i class="devicon-fastapi-plain colored" style="font-size: 3rem;"></i>
+                            <p>FastAPI</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
+                            <i class="devicon-go-original-wordmark colored" style="font-size: 3rem;"></i>
+                            <p>Golang</p>
+                        </div>
+                       
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
+                            <i class="devicon-postgresql-plain colored" style="font-size: 3rem;"></i>
+                            <p> PostgreSQL</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
+                            <i class="devicon-mysql-plain colored" style="font-size: 3rem;"></i>
+                            <p> MySQL</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
+                            <i class="devicon-html5-plain colored" style="font-size: 3rem;"></i>
+                            <p> HTML</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
+                            <i class="devicon-css3-plain colored" style="font-size: 3rem;"></i>
+                            <p> CSS</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
+                            <i class="devicon-javascript-plain colored" style="font-size: 3rem;"></i>
+                            <p> JavaScript</p>
+                        </div>
+                        
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
+                            <i class="devicon-bootstrap-plain colored" style="font-size: 3rem;"></i>
+                            <p>Bootstrap</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
+                            <i class="devicon-git-plain colored" style="font-size: 3rem;"></i>
+                            <p> Git</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
+                            <i class="devicon-docker-plain colored" style="font-size: 3rem;"></i>
+                            <p>Docker</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
+                            <i class="devicon-postgresql-plain colored" style="font-size: 3rem;"></i>
+                            <p>PostgreSQL</p>
+                        </div>
+                       
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
+                            <i class="devicon-apachekafka-original-wordmark colored" style="font-size: 3rem;"></i>
+                            <p>Kafka</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" style="width: 3rem;" />
+                            <p> AWS</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
+                            <i class="devicon-azure-plain colored" style="font-size: 3rem;"></i>
+                            <p>Azure</p>
+                        </div>
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                        <i class="devicon-flask-plain colored" style="font-size: 3rem;"></i>
-                        <p> Flask</p>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                        <i class="devicon-fastapi-plain colored" style="font-size: 3rem;"></i>
-                        <p>FastAPI</p>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                        <i class="devicon-go-original-wordmark colored" style="font-size: 3rem;"></i>
-                        <p>Golang</p>
-                    </div>
-                   
-                    <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                        <i class="devicon-postgresql-plain colored" style="font-size: 3rem;"></i>
-                        <p> PostgreSQL</p>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                        <i class="devicon-mysql-plain colored" style="font-size: 3rem;"></i>
-                        <p> MySQL</p>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                        <i class="devicon-html5-plain colored" style="font-size: 3rem;"></i>
-                        <p> HTML</p>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                        <i class="devicon-css3-plain colored" style="font-size: 3rem;"></i>
-                        <p> CSS</p>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                        <i class="devicon-javascript-plain colored" style="font-size: 3rem;"></i>
-                        <p> JavaScript</p>
-                    </div>
-                    
-                    <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                        <i class="devicon-bootstrap-plain colored" style="font-size: 3rem;"></i>
-                        <p>Bootstrap</p>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                        <i class="devicon-git-plain colored" style="font-size: 3rem;"></i>
-                        <p> Git</p>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                        <i class="devicon-docker-plain colored" style="font-size: 3rem;"></i>
-                        <p>Docker</p>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                        <i class="devicon-postgresql-plain colored" style="font-size: 3rem;"></i>
-                        <p>PostgreSQL</p>
-                    </div>
-                   
-                    <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                        <i class="devicon-apachekafka-original-wordmark colored" style="font-size: 3rem;"></i>
-                        <p>Kafka</p>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" style="width: 3rem;" />
-                        <p> AWS</p>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                        <i class="devicon-azure-plain colored" style="font-size: 3rem;"></i>
-                        <p>Azure</p>
-                    </div>
-                </div>
-            </div><!-- row -->
-        </div> <!-- container -->
+                </div><!-- row -->
+            </div> <!-- container -->
+        </div>
+        <div class="floating-element" data-depth="0.1">
+            <i class="devicon-python-plain"></i>
+        </div>
+        <div class="floating-element" data-depth="0.2">
+            <i class="devicon-django-plain"></i>
+        </div>
     </section>
 
     <!--====== SERVICES PART ENDS ======-->
@@ -339,7 +444,7 @@
                     </div> <!-- single work -->
                 </div>
 
-                <div class="col-lg-4 col-md-6 col-sm-6">
+                <!-- <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="single-work text-center mt-30">
                         <div class="work-image border">
                             <img src="assets/images/real-time_chat/front_dj.png" alt="work">
@@ -354,7 +459,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div> <!-- single work -->
+                    </div> 
                 </div>
 
                 <div class="col-lg-4 col-md-6 col-sm-6">
@@ -372,8 +477,8 @@
                                 </ul>
                             </div>
                         </div>
-                    </div> <!-- single work -->
-                </div>
+                    </div> 
+                </div> -->
 
 
             </div> <!-- container -->
@@ -792,10 +897,6 @@
     <!--====== Appear js ======-->
     <script src="assets/js/jquery.appear.min.js"></script>
 
-    <!--====== Scrolling js ======-->
-    <script src="assets/js/scrolling-nav.js"></script>
-    <script src="assets/js/jquery.easing.min.js"></script>
-
     <!--====== Validator js ======-->
     <!-- <script src="assets/js/validator.min.js"></script> -->
 
@@ -809,40 +910,73 @@
         </a>
     </div>
 
-    <style>
-    .floating-contact {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        z-index: 999;
-    }
-
-    .floating-contact .btn {
-        width: 60px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    </style>
-
-    <script src="https://unpkg.com/scrollreveal"></script>
-
     <script>
-    ScrollReveal().reveal('.single-work', {
-        delay: 200,
-        distance: '20px',
-        origin: 'bottom',
-        interval: 100
-    });
-
-    ScrollReveal().reveal('.contact-box', {
-        delay: 200,
-        distance: '20px',
-        origin: 'left',
-        interval: 100
-    });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Remove any existing scroll event listeners
+            $(window).off('scroll');
+            
+            // Cache DOM elements and values
+            const nav = $(".navigation");
+            const navItems = $('.navbar-nav .nav-item');
+            const sections = $('section, header');
+            let ticking = false;
+            
+            // Throttled scroll handler
+            function onScroll() {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        const scrollPosition = window.pageYOffset + 100;
+                        
+                        // Sticky navigation - separate from main scroll spy for performance
+                        if (window.pageYOffset < 10) {
+                            nav.removeClass("sticky");
+                        } else if (!nav.hasClass("sticky")) {
+                            nav.addClass("sticky");
+                        }
+                        
+                        // Find the current section
+                        let currentSection = null;
+                        sections.each(function() {
+                            const sectionTop = this.offsetTop;
+                            const sectionBottom = sectionTop + this.offsetHeight;
+                            
+                            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                                currentSection = this.id;
+                                return false; // Break the loop
+                            }
+                        });
+                        
+                        // Update active state only if section changed
+                        if (currentSection) {
+                            navItems.removeClass('active');
+                            $(`.navbar-nav .nav-item a[href="#${currentSection}"]`).parent().addClass('active');
+                        }
+                        
+                        ticking = false;
+                    });
+                    
+                    ticking = true;
+                }
+            }
+            
+            // Attach optimized scroll handler
+            window.addEventListener('scroll', onScroll, { passive: true });
+            
+            // Smooth scroll handler
+            $('.page-scroll').on('click', function(e) {
+                e.preventDefault();
+                const target = $(this.hash);
+                if (target.length) {
+                    window.scrollTo({
+                        top: target.offset().top - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    navItems.removeClass('active');
+                    $(this).parent().addClass('active');
+                }
+            });
+        });
     </script>
 
 </body>
