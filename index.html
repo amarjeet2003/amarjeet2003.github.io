@@ -2,981 +2,1080 @@
 <html lang="en">
 
 <head>
-
-    <!--====== Required meta tags ======-->
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="">
+    <meta name="description"
+        content="Amarjeet Singh — Backend Software Engineer building high-throughput, scalable systems with Golang, Python, Kafka, Redis and Kubernetes.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#070b14">
 
-    <!--====== Title ======-->
-    <title>Amarjeet Singh - Portfolio</title>
+    <title>Amarjeet Singh — Backend Software Engineer</title>
 
-    <!--====== Favicon Icon ======-->
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
 
-    <!--====== Bootstrap css ======-->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
 
-    <!--====== Line Icons css ======-->
-    <link rel="stylesheet" href="assets/css/LineIcons.css">
-
-    <!--====== Magnific Popup css ======-->
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-
-    <!--====== Default css ======-->
-    <link rel="stylesheet" href="assets/css/default.css">
-
-    <!--====== Style css ======-->
-    <link rel="stylesheet" href="assets/css/style.css">
-
+    <!-- Tech icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
     <style>
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 70px;
-        }
-        
-        /* Existing floating contact styles can stay here */
-        .floating-contact {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 999;
-        }
-
-        .floating-contact .btn {
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            transition: all 0.3s ease;
+        /* ===================== TOKENS ===================== */
+        :root {
+            --bg: #070b14;
+            --bg-2: #0b1120;
+            --surface: rgba(255, 255, 255, 0.03);
+            --surface-2: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-strong: rgba(255, 255, 255, 0.16);
+            --text: #e8edf6;
+            --muted: #94a3b8;
+            --muted-2: #64748b;
+            --accent: #38bdf8;
+            --accent-2: #818cf8;
+            --accent-3: #2dd4bf;
+            --grad: linear-gradient(120deg, #38bdf8 0%, #818cf8 50%, #2dd4bf 100%);
+            --grad-soft: linear-gradient(120deg, rgba(56, 189, 248, .14), rgba(129, 140, 248, .14));
+            --shadow: 0 24px 60px -20px rgba(0, 0, 0, .7);
+            --radius: 18px;
+            --maxw: 1140px;
         }
 
-        .floating-contact .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+        body {
+            font-family: 'Sora', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .floating-contact i {
-            font-size: 24px;
-        }
+        ::selection { background: rgba(129, 140, 248, .35); color: #fff; }
 
-        .parallax-container {
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+        .ico { width: 1.05em; height: 1.05em; display: inline-block; vertical-align: -0.16em; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #2c3e57; }
+
+        /* ===================== BACKGROUND FX ===================== */
+        .bg-fx { position: fixed; inset: 0; z-index: -2; overflow: hidden; }
+        .bg-fx .orb {
+            position: absolute; border-radius: 50%; filter: blur(90px); opacity: .45;
+            animation: drift 22s ease-in-out infinite;
+        }
+        .orb.o1 { width: 520px; height: 520px; background: #1e40af; top: -120px; left: -100px; }
+        .orb.o2 { width: 460px; height: 460px; background: #0e7490; top: 30%; right: -140px; animation-delay: -7s; }
+        .orb.o3 { width: 420px; height: 420px; background: #4338ca; bottom: -140px; left: 28%; animation-delay: -14s; }
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(40px, -30px) scale(1.08); }
+            66% { transform: translate(-30px, 25px) scale(.95); }
+        }
+        .grid-overlay {
+            position: fixed; inset: 0; z-index: -1; pointer-events: none;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, .025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 80%);
+        }
+        #particles { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+
+        /* ===================== PRELOADER ===================== */
+        .preloader {
+            position: fixed; inset: 0; z-index: 9999; background: var(--bg);
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity .6s ease, visibility .6s ease;
+        }
+        .preloader.hide { opacity: 0; visibility: hidden; }
+        .pl-logo {
+            font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; letter-spacing: 2px;
+            color: var(--muted);
+        }
+        .pl-logo b { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .pl-bar { width: 180px; height: 2px; background: var(--border); margin-top: 18px; overflow: hidden; border-radius: 2px; }
+        .pl-bar span { display: block; height: 100%; width: 40%; background: var(--grad); animation: load 1s ease-in-out infinite; }
+        @keyframes load { 0% { transform: translateX(-120%); } 100% { transform: translateX(360%); } }
+
+        /* ===================== LAYOUT ===================== */
+        .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+        section { padding: 110px 0; position: relative; }
+
+        .eyebrow {
+            font-family: 'JetBrains Mono', monospace; font-size: .8rem; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--accent);
+            display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px;
+        }
+        .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--accent); display: inline-block; }
+
+        .sec-head { text-align: center; max-width: 640px; margin: 0 auto 60px; }
+        .sec-head .eyebrow { justify-content: center; }
+        .sec-title { font-size: clamp(2rem, 4vw, 2.9rem); font-weight: 800; line-height: 1.15; letter-spacing: -1px; }
+        .sec-sub { color: var(--muted); margin-top: 14px; font-size: 1.02rem; }
+
+        .grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+        /* ===================== NAV ===================== */
+        header.nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            transition: all .35s ease; padding: 18px 0;
+        }
+        header.nav.scrolled {
+            padding: 12px 0;
+            background: rgba(7, 11, 20, .72);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+        .brand { font-weight: 800; font-size: 1.25rem; letter-spacing: -.5px; display: flex; align-items: center; gap: 8px; }
+        .brand .dot { color: var(--accent); }
+        .nav-links { display: flex; gap: 6px; align-items: center; }
+        .nav-links a.link {
+            padding: 8px 16px; border-radius: 999px; color: var(--muted); font-size: .92rem; font-weight: 500;
+            transition: all .25s ease; position: relative;
+        }
+        .nav-links a.link:hover { color: var(--text); }
+        .nav-links a.link.active { color: var(--text); background: var(--surface-2); }
+        .nav-cta {
+            padding: 9px 20px; border-radius: 999px; font-weight: 600; font-size: .9rem;
+            background: var(--grad); color: #04121e !important; transition: transform .25s ease, box-shadow .25s ease;
+            box-shadow: 0 8px 24px -8px rgba(56, 189, 248, .6);
+        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 30px -8px rgba(56, 189, 248, .8); }
+        .burger { display: none; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: 8px; }
+        .burger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
+        .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .burger.open span:nth-child(2) { opacity: 0; }
+        .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ===================== HERO ===================== */
+        .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 120px; }
+        .hero-grid { display: grid; grid-template-columns: 1.25fr .9fr; gap: 50px; align-items: center; }
+        .badge-status {
+            display: inline-flex; align-items: center; gap: 9px; padding: 7px 16px;
+            border: 1px solid var(--border); border-radius: 999px; background: var(--surface);
+            font-size: .85rem; color: var(--muted); margin-bottom: 26px;
+        }
+        .badge-status .pulse {
+            width: 8px; height: 8px; border-radius: 50%; background: #34d399; position: relative;
+        }
+        .badge-status .pulse::after {
+            content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid #34d399;
+            animation: ping 1.8s cubic-bezier(0, 0, .2, 1) infinite;
+        }
+        @keyframes ping { 75%, 100% { transform: scale(2.2); opacity: 0; } }
+
+        .hero h1 { font-size: clamp(2.6rem, 6vw, 4.6rem); font-weight: 800; line-height: 1.05; letter-spacing: -2px; }
+        .hero .role {
+            font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.1rem, 2.6vw, 1.7rem);
+            font-weight: 600; color: var(--muted); margin-top: 12px; min-height: 1.6em;
+        }
+        .hero .role .typed { color: var(--text); }
+        .hero .role .cursor { color: var(--accent); animation: blink 1s step-end infinite; font-weight: 400; }
+        @keyframes blink { 50% { opacity: 0; } }
+        .hero p.lede { color: var(--muted); font-size: 1.08rem; max-width: 540px; margin-top: 22px; }
+
+        .hero-actions { display: flex; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 10px; padding: 13px 26px; border-radius: 999px;
+            font-weight: 600; font-size: .95rem; cursor: pointer; transition: all .28s ease; border: 1px solid transparent;
+        }
+        .btn-primary { background: var(--grad); color: #04121e; box-shadow: 0 12px 30px -10px rgba(56, 189, 248, .7); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -10px rgba(56, 189, 248, .9); }
+        .btn-ghost { background: var(--surface); border-color: var(--border-strong); color: var(--text); }
+        .btn-ghost:hover { background: var(--surface-2); transform: translateY(-3px); border-color: var(--accent); }
+
+        .hero-socials { display: flex; gap: 14px; margin-top: 30px; }
+        .hero-socials a {
+            width: 44px; height: 44px; display: grid; place-items: center; border-radius: 12px;
+            border: 1px solid var(--border); background: var(--surface); color: var(--muted);
+            font-size: 1.2rem; transition: all .25s ease;
+        }
+        .hero-socials a:hover { color: var(--text); border-color: var(--accent); transform: translateY(-3px); background: var(--surface-2); }
+
+        /* Hero terminal card */
+        .terminal {
+            background: linear-gradient(180deg, rgba(13, 19, 33, .95), rgba(9, 13, 24, .95));
+            border: 1px solid var(--border); border-radius: var(--radius);
+            box-shadow: var(--shadow); overflow: hidden; font-family: 'JetBrains Mono', monospace;
             position: relative;
-            overflow: hidden;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+        }
+        .terminal::before {
+            content: ""; position: absolute; inset: 0; border-radius: var(--radius); padding: 1px;
+            background: var(--grad);
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude; opacity: .4; pointer-events: none;
+        }
+        .term-bar { display: flex; align-items: center; gap: 8px; padding: 14px 18px; border-bottom: 1px solid var(--border); }
+        .term-bar .d { width: 12px; height: 12px; border-radius: 50%; }
+        .term-bar .r { background: #ff5f56; } .term-bar .y { background: #ffbd2e; } .term-bar .g { background: #27c93f; }
+        .term-bar .fn { margin-left: 10px; color: var(--muted-2); font-size: .8rem; }
+        .term-body { padding: 22px; font-size: .86rem; line-height: 1.9; }
+        .term-body .ln { display: block; white-space: pre-wrap; }
+        .t-key { color: #818cf8; } .t-str { color: #2dd4bf; } .t-fn { color: #38bdf8; } .t-com { color: var(--muted-2); } .t-num { color: #fbbf24; }
+
+        /* ===================== STATS ===================== */
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: -40px; }
+        .stat {
+            background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 28px 22px; text-align: center; transition: all .3s ease; position: relative; overflow: hidden;
+        }
+        .stat:hover { transform: translateY(-5px); border-color: var(--border-strong); background: var(--surface-2); }
+        .stat .num { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; }
+        .stat .lbl { color: var(--muted); font-size: .88rem; margin-top: 4px; }
+
+        /* ===================== ABOUT ===================== */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-grid p { color: var(--muted); font-size: 1.05rem; margin-bottom: 18px; }
+        .about-grid strong { color: var(--text); font-weight: 600; }
+        .about-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+        .about-tags span {
+            font-family: 'JetBrains Mono', monospace; font-size: .82rem; padding: 7px 14px; border-radius: 999px;
+            background: var(--grad-soft); border: 1px solid var(--border); color: var(--text);
+        }
+        .info-card {
+            background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px;
+        }
+        .info-row { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+        .info-row:last-child { border-bottom: 0; }
+        .info-row .ic {
+            width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; flex-shrink: 0;
+            background: var(--grad-soft); color: var(--accent); font-size: 1.3rem; border: 1px solid var(--border);
+        }
+        .info-row .k { font-size: .78rem; color: var(--muted-2); text-transform: uppercase; letter-spacing: 1px; }
+        .info-row .v { font-weight: 600; }
+
+        /* ===================== EXPERIENCE TIMELINE ===================== */
+        .timeline { position: relative; max-width: 860px; margin: 0 auto; padding-left: 30px; }
+        .timeline::before {
+            content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px;
+            background: linear-gradient(180deg, var(--accent), var(--accent-2), transparent);
+        }
+        .tl-item { position: relative; padding: 0 0 44px 36px; }
+        .tl-item:last-child { padding-bottom: 0; }
+        .tl-item::before {
+            content: ""; position: absolute; left: -30px; top: 6px; width: 16px; height: 16px; border-radius: 50%;
+            background: var(--bg); border: 3px solid var(--accent); box-shadow: 0 0 0 4px rgba(56, 189, 248, .12);
+        }
+        .tl-time { font-family: 'JetBrains Mono', monospace; font-size: .8rem; color: var(--accent); letter-spacing: 1px; }
+        .tl-card {
+            background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 24px 26px; margin-top: 10px; transition: all .3s ease;
+        }
+        .tl-card:hover { transform: translateX(6px); border-color: var(--border-strong); background: var(--surface-2); }
+        .tl-role { font-size: 1.2rem; font-weight: 700; }
+        .tl-co { color: var(--accent-2); font-weight: 600; font-size: .95rem; margin-top: 2px; }
+        .tl-card ul { list-style: none; margin-top: 14px; display: grid; gap: 10px; }
+        .tl-card li { position: relative; padding-left: 22px; color: var(--muted); font-size: .96rem; }
+        .tl-card li::before { content: "▹"; position: absolute; left: 0; color: var(--accent); }
+        .tl-card li b { color: var(--text); font-weight: 600; }
+        .tl-stack { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+        .tl-stack span {
+            font-family: 'JetBrains Mono', monospace; font-size: .74rem; padding: 4px 11px; border-radius: 6px;
+            background: var(--surface-2); border: 1px solid var(--border); color: var(--muted);
         }
 
-        .parallax-background {
+        /* ===================== SKILLS ===================== */
+        .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+        .skill-cat {
+            background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 28px; transition: all .3s ease;
+        }
+        .skill-cat:hover { transform: translateY(-6px); border-color: var(--border-strong); box-shadow: var(--shadow); }
+        .skill-cat.ai-feature {
+            border-color: rgba(129, 140, 248, .38);
+            background: linear-gradient(155deg, rgba(129, 140, 248, .12), rgba(56, 189, 248, .05));
             position: relative;
-            overflow: hidden;
+        }
+        .skill-cat.ai-feature h4 { flex-wrap: wrap; }
+        .ai-badge {
+            font-family: 'JetBrains Mono', monospace; font-size: .58rem; letter-spacing: 1.5px;
+            color: var(--accent-3); background: rgba(45, 212, 191, .12);
+            border: 1px solid rgba(45, 212, 191, .32); padding: 4px 9px; border-radius: 999px;
+            white-space: nowrap;
+        }
+        .skill-cat h4 { font-size: 1.05rem; display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+        .skill-cat h4 i { color: var(--accent); }
+        .chip-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+        .chip {
+            display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px; border-radius: 10px;
+            background: var(--surface-2); border: 1px solid var(--border); font-size: .85rem; font-weight: 500;
+            transition: all .25s ease; cursor: default;
+        }
+        .chip:hover { transform: translateY(-3px); border-color: var(--accent); background: rgba(56, 189, 248, .08); }
+        .chip i, .chip img { font-size: 1.15rem; width: 18px; height: 18px; object-fit: contain; }
+
+        /* ===================== PROJECTS ===================== */
+        /* Flagship case-study cards */
+        .fl-grid { display: grid; gap: 22px; margin-bottom: 54px; }
+        .flagship {
+            position: relative; background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 32px 34px; overflow: hidden; transition: all .35s ease;
+        }
+        .flagship::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--grad); }
+        .flagship::after {
+            content: ""; position: absolute; inset: 0; opacity: 0; transition: opacity .35s ease; pointer-events: none;
+            background: radial-gradient(700px circle at var(--mx, 80%) var(--my, 0%), rgba(56, 189, 248, .07), transparent 42%);
+        }
+        .flagship:hover::after { opacity: 1; }
+        .flagship:hover { transform: translateY(-5px); border-color: var(--border-strong); box-shadow: var(--shadow); }
+        .fl-head { display: flex; align-items: flex-start; gap: 18px; flex-wrap: wrap; }
+        .fl-icon {
+            width: 58px; height: 58px; border-radius: 16px; display: grid; place-items: center; flex-shrink: 0;
+            background: var(--grad-soft); border: 1px solid var(--border); font-size: 1.7rem;
+        }
+        .fl-titles h3 { font-size: 1.45rem; font-weight: 700; line-height: 1.2; }
+        .fl-titles .ptag { font-family: 'JetBrains Mono', monospace; font-size: .8rem; color: var(--accent-2); margin-top: 4px; }
+        .fl-label {
+            margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: .7rem; letter-spacing: 1px;
+            padding: 6px 13px; border-radius: 999px; background: rgba(45, 212, 191, .12);
+            border: 1px solid rgba(45, 212, 191, .3); color: var(--accent-3); white-space: nowrap; align-self: center;
+        }
+        .flagship > p { color: var(--muted); margin-top: 16px; font-size: 1rem; max-width: 780px; }
+        .fl-metrics { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 24px; }
+        .fl-metrics .m { background: var(--surface-2); border: 1px solid var(--border); border-radius: 14px; padding: 14px 22px; min-width: 110px; }
+        .fl-metrics .m b {
+            display: block; font-size: 1.7rem; font-weight: 800; letter-spacing: -1px; line-height: 1.1;
+            background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .fl-metrics .m span { font-size: .78rem; color: var(--muted); }
+        .flagship .pstack { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 22px; }
+        .flagship .pstack span {
+            font-family: 'JetBrains Mono', monospace; font-size: .74rem; padding: 5px 11px; border-radius: 6px;
+            background: var(--surface-2); border: 1px solid var(--border); color: var(--muted);
+        }
+        .proj-subhead {
+            display: flex; align-items: center; justify-content: center; gap: 16px; margin: 0 0 30px;
+            font-family: 'JetBrains Mono', monospace; font-size: .82rem; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--muted-2);
+        }
+        .proj-subhead::before, .proj-subhead::after { content: ""; height: 1px; width: 56px; background: var(--border); }
+
+        .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .proj {
+            background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 30px; transition: all .35s ease; position: relative; overflow: hidden;
+            display: flex; flex-direction: column;
+        }
+        .proj::after {
+            content: ""; position: absolute; inset: 0; opacity: 0; transition: opacity .35s ease; pointer-events: none;
+            background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 0%), rgba(56, 189, 248, .08), transparent 40%);
+        }
+        .proj:hover::after { opacity: 1; }
+        .proj:hover { transform: translateY(-6px); border-color: var(--border-strong); box-shadow: var(--shadow); }
+        .proj-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+        .proj-icon {
+            width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center;
+            background: var(--grad-soft); border: 1px solid var(--border); color: var(--accent); font-size: 1.5rem;
+        }
+        .proj-links { display: flex; gap: 10px; }
+        .proj-links a { color: var(--muted); font-size: 1.25rem; transition: color .2s ease; }
+        .proj-links a:hover { color: var(--accent); }
+        .proj h3 { font-size: 1.3rem; font-weight: 700; }
+        .proj .ptag { font-family: 'JetBrains Mono', monospace; font-size: .78rem; color: var(--accent-2); margin-top: 2px; }
+        .proj p { color: var(--muted); font-size: .96rem; margin-top: 14px; flex-grow: 1; }
+        .proj .pstack { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+        .proj .pstack span {
+            font-family: 'JetBrains Mono', monospace; font-size: .72rem; padding: 4px 10px; border-radius: 6px;
+            background: var(--surface-2); border: 1px solid var(--border); color: var(--muted);
+        }
+        .proj-badge {
+            position: absolute; top: 22px; right: 22px; font-size: .68rem; font-family: 'JetBrains Mono', monospace;
+            padding: 4px 10px; border-radius: 999px; background: rgba(45, 212, 191, .12);
+            border: 1px solid rgba(45, 212, 191, .3); color: var(--accent-3); letter-spacing: 1px;
         }
 
-        .floating-element {
-            position: absolute;
-            opacity: 0.1;
-            font-size: 4rem;
+        /* ===================== CONTACT ===================== */
+        .contact-wrap {
+            max-width: 760px; margin: 0 auto; text-align: center;
+            background: var(--surface); border: 1px solid var(--border); border-radius: 26px;
+            padding: 60px 40px; position: relative; overflow: hidden;
+        }
+        .contact-wrap::before {
+            content: ""; position: absolute; top: -50%; left: 50%; transform: translateX(-50%);
+            width: 600px; height: 600px; background: radial-gradient(circle, rgba(56, 189, 248, .12), transparent 60%);
             pointer-events: none;
         }
+        .contact-wrap h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -1px; position: relative; }
+        .contact-wrap p { color: var(--muted); margin: 16px auto 30px; max-width: 480px; position: relative; }
+        .contact-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
 
-        /* Optimize performance */
-        .layer {
-            will-change: transform;
-            transform-style: preserve-3d;
+        /* ===================== FOOTER ===================== */
+        footer.site {
+            border-top: 1px solid var(--border); padding: 40px 0; text-align: center;
         }
+        .foot-socials { display: flex; gap: 14px; justify-content: center; margin-bottom: 18px; }
+        .foot-socials a {
+            width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%;
+            border: 1px solid var(--border); color: var(--muted); font-size: 1.1rem; transition: all .25s ease;
+        }
+        .foot-socials a:hover { color: var(--text); border-color: var(--accent); transform: translateY(-3px); }
+        footer.site .copy { color: var(--muted-2); font-size: .88rem; }
+        footer.site .copy b { color: var(--muted); }
 
-        /* Reduce motion for accessibility */
+        /* Back to top */
+        .to-top {
+            position: fixed; bottom: 28px; right: 28px; width: 48px; height: 48px; border-radius: 14px;
+            background: var(--grad); color: #04121e; display: grid; place-items: center; font-size: 1.3rem;
+            box-shadow: 0 10px 30px -8px rgba(56, 189, 248, .6); cursor: pointer; z-index: 900;
+            opacity: 0; visibility: hidden; transform: translateY(20px); transition: all .35s ease; border: 0;
+        }
+        .to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+        .to-top:hover { transform: translateY(-4px); }
+
+        /* ===================== REVEAL ANIM ===================== */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .7s cubic-bezier(.2, .7, .2, 1); }
+        .reveal.in { opacity: 1; transform: none; }
+        .reveal.d1 { transition-delay: .08s; } .reveal.d2 { transition-delay: .16s; }
+        .reveal.d3 { transition-delay: .24s; } .reveal.d4 { transition-delay: .32s; }
+
         @media (prefers-reduced-motion: reduce) {
-            .layer {
-                transform: none !important;
-            }
+            .reveal { opacity: 1 !important; transform: none !important; }
+            .orb, .badge-status .pulse::after { animation: none !important; }
+            html { scroll-behavior: auto; }
         }
 
-        /* Update the services area to have relative positioning */
-        .services-area {
-            position: relative;
-            overflow: hidden; /* This will clip any overflow */
+        /* ===================== RESPONSIVE ===================== */
+        @media (max-width: 980px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+            .terminal { max-width: 520px; }
+            .about-grid { grid-template-columns: 1fr; gap: 34px; }
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats { grid-template-columns: repeat(2, 1fr); }
         }
-
-        .floating-element {
-            position: absolute;
-            opacity: 0.05;
-            font-size: 2rem;
-            pointer-events: none;
-            z-index: 0;
-            /* Add animation to make it more interesting */
-            animation: float 20s infinite linear;
-        }
-
-        /* Optional: Add a subtle floating animation */
-        @keyframes float {
-            0% {
-                transform: translateY(0) translateX(0);
+        @media (max-width: 720px) {
+            section { padding: 80px 0; }
+            .nav-links {
+                position: fixed; inset: 0 0 0 auto; width: min(78vw, 320px);
+                background: rgba(9, 13, 24, .97); backdrop-filter: blur(20px);
+                flex-direction: column; align-items: flex-start; justify-content: center; gap: 8px;
+                padding: 40px 34px; transform: translateX(105%); transition: transform .4s cubic-bezier(.5, 0, .2, 1);
+                border-left: 1px solid var(--border);
             }
-            50% {
-                transform: translateY(-20px) translateX(10px);
-            }
-            100% {
-                transform: translateY(0) translateX(0);
-            }
+            .nav-links.open { transform: translateX(0); }
+            .nav-links a.link { width: 100%; font-size: 1.1rem; padding: 12px 16px; }
+            .nav-cta { margin-top: 10px; }
+            .burger { display: flex; z-index: 1100; }
+            .proj-grid { grid-template-columns: 1fr; }
+            .flagship { padding: 26px 22px; }
+            .fl-label { margin-left: 0; align-self: flex-start; }
+            .fl-metrics .m { flex: 1 1 40%; min-width: 0; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .stats { grid-template-columns: 1fr 1fr; margin-top: 0; }
+            .hero h1 { letter-spacing: -1px; }
         }
     </style>
-
 </head>
 
 <body>
 
-    <!--====== PRELOADER PART START ======-->
+    <!-- Background FX -->
+    <div class="bg-fx">
+        <div class="orb o1"></div>
+        <div class="orb o2"></div>
+        <div class="orb o3"></div>
+    </div>
+    <div class="grid-overlay"></div>
+    <canvas id="particles"></canvas>
 
-    <div class="preloader">
-        <div class="loader_34">
-            <div class="ytp-spinner">
-                <div class="ytp-spinner-container">
-                    <div class="ytp-spinner-rotator">
-                        <div class="ytp-spinner-left">
-                            <div class="ytp-spinner-circle"></div>
-                        </div>
-                        <div class="ytp-spinner-right">
-                            <div class="ytp-spinner-circle"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div style="text-align:center">
+            <div class="pl-logo">&lt; <b>amarjeet</b> /&gt;</div>
+            <div class="pl-bar"><span></span></div>
         </div>
     </div>
 
-    <!--====== PRELOADER ENDS START ======-->
-
-    <!--====== HEADER PART START ======-->
-
-    <header id="home" class="header-area">
-        <div class="navigation fixed-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <nav class="navbar navbar-expand-lg">
-                            <a class="navbar-brand" href="index.html">
-                               <h4>Amarjeet</h4>
-                            </a> 
-                            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="toggler-icon"></span>
-                                <span class="toggler-icon"></span>
-                                <span class="toggler-icon"></span>
-                            </button>
-
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav ml-auto">
-                                    <li class="nav-item active"><a class="page-scroll" href="#home">Home</a></li>
-                                    <li class="nav-item"><a class="page-scroll" href="#about">About</a></li>
-                                    <li class="nav-item"><a class="page-scroll" href="#service">Skills</a></li>
-                                    <li class="nav-item"><a class="page-scroll" href="#work">Projects</a></li>
-                                    <li class="nav-item"><a class="page-scroll" href="#contact">Contact</a></li>
-                                </ul>
-                            </div> <!-- navbar collapse -->
-                        </nav> <!-- navbar -->
-                    </div>
-                </div> <!-- row -->
-            </div> <!-- container -->
-        </div> <!-- navigation -->
-
-        <div id="parallax" class="header-content d-flex align-items-center">
-            <div class="header-shape shape-one layer" data-depth="0.05">
-                <img src="assets/images/banner/shape/shape-1.png" alt="Shape">
-            </div> <!-- header shape -->
-            <div class="header-shape shape-tow layer" data-depth="0.15">
-                <img src="assets/images/banner/shape/shape-2.png" alt="Shape">
-            </div> <!-- header shape -->
-            <div class="header-shape shape-three layer" data-depth="0.20">
-                <img src="assets/images/banner/shape/shape-3.png" alt="Shape">
-            </div> <!-- header shape -->
-            <div class="header-shape shape-fore layer" data-depth="0.30">
-                <img src="assets/images/banner/shape/shape-2.png" alt="Shape">
-            </div> <!-- header shape -->
-            <div class="header-shape shape-five layer" data-depth="0.10">
-                <img src="assets/images/banner/shape/shape-1.png" alt="Shape">
-            </div> <!-- header shape -->
-            <div class="header-shape shape-six layer" data-depth="0.08">
-                <img src="assets/images/banner/shape/shape-4.png" alt="Shape">
-            </div> <!-- header shape -->
-            <div class="header-shape shape-seven layer" data-depth="0.25">
-                <img src="assets/images/banner/shape/shape-5.png" alt="Shape">
-            </div> <!-- header shape -->
-            <div class="header-shape shape-eight layer" data-depth="0.20">
-                <img src="assets/images/banner/shape/shape-3.png" alt="Shape">
-            </div> <!-- header shape -->
-            <div class="header-shape shape-nine layer" data-depth="0.10">
-                <img src="assets/images/banner/shape/shape-6.png" alt="Shape">
-            </div> <!-- header shape -->
-            <div class="header-shape shape-ten layer" data-depth="0.15">
-                <img src="assets/images/banner/shape/shape-3.png" alt="Shape">
-            </div> <!-- header shape -->
-            <div class="container">
-                <div class="row text-center">
-                    <div class="col-lg-12">
-                        <div class="header-content-right">
-                            <h4 class="sub-title">Hello, I'm</h4>
-                            <h1 class="title typewrite" data-period="2000" data-type='[ "Amarjeet Singh", "a Software Engineer", "a Problem Solver" ]'>
-                                <span class="wrap"></span>
-                            </h1>
-                            <p>Building scalable systems with Python Django and Golang | Passionate about problem-solving and creating impactful solutions.</p>
-                        </div> <!-- header content right -->
-                    </div>
-                </div>
-                <div class="row text-center">
-                    <div class="col-lg-12">
-                        <div class="header-social">
-    
-                            <div class="header-social-icon">
-                                <ul>
-                                    <li><a href="https://www.github.com/amarjeet2003" target="_blank"><i
-                                                class="lni-github-original" ></i></a></li>
-                                    <li><a href="https://www.linkedin.com/in/amarjeet-singh-b74526205/" target="_blank"><i
-                                                class="lni-linkedin-original"></i></a></li>
-                                    <li><a href="mailto:200390amarjeet@gmail.com"><i class="lni lni-popup"></i></a></li>
-                                </ul>
-                            </div>
-    
-                        </div>
-
-                        <a class="main-btn mt-3" href="#work">View my Work</a>
-                    </div>
-
-                </div> <!-- row -->
-            </div> <!-- container -->
-        </div> <!-- header content -->
+    <!-- Navigation -->
+    <header class="nav" id="nav">
+        <div class="container nav-inner">
+            <a href="#home" class="brand">Amarjeet<span class="dot">.</span></a>
+            <nav class="nav-links" id="navLinks">
+                <a class="link active" href="#home">Home</a>
+                <a class="link" href="#about">About</a>
+                <a class="link" href="#experience">Experience</a>
+                <a class="link" href="#skills">Skills</a>
+                <a class="link" href="#projects">Projects</a>
+                <a class="nav-cta" href="#contact">Let's Talk</a>
+            </nav>
+            <button class="burger" id="burger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </header>
 
-    <!--====== HEADER PART ENDS ======-->
-
-    <!--====== ABOUT PART START ======-->
-
-    <section id="about" class="about-area pt-125 pb-130">
-        <div class="parallax-container" data-parallax="scroll" data-image-src="assets/images/your-background.jpg">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">  
-                        <div class="section-title text-center">
-                            <h2 class="title">About Me</h2>
-                            <p>Highly enthusiastic and passionate about Python, Django, Golang and scripting. Experienced in Generative AI, API development and DevOps. Eager to join dynamic teams, contribute skills, and drive collaborative innovation.</p>
-                        </div> <!-- section title -->
-                    </div>
-                </div> <!-- row -->
-
-            </div> <!-- row -->
-            </div> <!-- container -->
-        </div>
-    </section>
-
-    <!--====== ABOUT PART ENDS ======-->
-
-    <!--====== SERVICES PART START ======-->
-
-    <section id="service" class="services-area gray-bg pt-125 pb-130">
-        <div class="parallax-background">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-7">
-                        <div class="section-title text-center pb-30">
-                            <h2 class="title">My Skills</h2>
-                            <p>Empowering projects with my skills and expertise.</p>
-                        </div> <!-- section title -->
-                    </div>
-                </div> <!-- row -->
-                <div id="skills" class="mt-4 py-4 text-center">
-                    <div class="row justify-content-center">
-                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" style="width: 3rem;"/>
-                            <p style> Python</p>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain-wordmark.svg"
-                                style="width: 3rem;" />
-                            <p> Django</p>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                            <i class="devicon-flask-plain colored" style="font-size: 3rem;"></i>
-                            <p> Flask</p>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                            <i class="devicon-fastapi-plain colored" style="font-size: 3rem;"></i>
-                            <p>FastAPI</p>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                            <i class="devicon-go-original-wordmark colored" style="font-size: 3rem;"></i>
-                            <p>Golang</p>
-                        </div>
-                       
-                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                            <i class="devicon-postgresql-plain colored" style="font-size: 3rem;"></i>
-                            <p> PostgreSQL</p>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                            <i class="devicon-mysql-plain colored" style="font-size: 3rem;"></i>
-                            <p> MySQL</p>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                            <i class="devicon-html5-plain colored" style="font-size: 3rem;"></i>
-                            <p> HTML</p>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                            <i class="devicon-css3-plain colored" style="font-size: 3rem;"></i>
-                            <p> CSS</p>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                            <i class="devicon-javascript-plain colored" style="font-size: 3rem;"></i>
-                            <p> JavaScript</p>
-                        </div>
-                        
-                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                            <i class="devicon-bootstrap-plain colored" style="font-size: 3rem;"></i>
-                            <p>Bootstrap</p>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                            <i class="devicon-git-plain colored" style="font-size: 3rem;"></i>
-                            <p> Git</p>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                            <i class="devicon-docker-plain colored" style="font-size: 3rem;"></i>
-                            <p>Docker</p>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                            <i class="devicon-postgresql-plain colored" style="font-size: 3rem;"></i>
-                            <p>PostgreSQL</p>
-                        </div>
-                       
-                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                            <i class="devicon-apachekafka-original-wordmark colored" style="font-size: 3rem;"></i>
-                            <p>Kafka</p>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" style="width: 3rem;" />
-                            <p> AWS</p>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-2 mb-4">
-                            <i class="devicon-azure-plain colored" style="font-size: 3rem;"></i>
-                            <p>Azure</p>
-                        </div>
-                    </div>
-                </div><!-- row -->
-            </div> <!-- container -->
-        </div>
-        <div class="floating-element" data-depth="0.1">
-            <i class="devicon-python-plain"></i>
-        </div>
-        <div class="floating-element" data-depth="0.2">
-            <i class="devicon-django-plain"></i>
-        </div>
-    </section>
-
-    <!--====== SERVICES PART ENDS ======-->
-
-    <!--====== WORK PART START ======-->
-
-    <section id="work" class="work-area pt-125 pb-130">
+    <!-- Hero -->
+    <section class="hero" id="home">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title pb-25 text-center">
-                        <h2 class="title">My Recent Works</h2>
-                        <p>Check out my latest creations and see where my creativity has taken me.</p>
-                    </div> <!-- section title -->
-                </div>
-            </div> <!-- row -->
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-work text-center mt-30">
-                        <div class="work-image border">
-                            <img src="assets/images/MRUFresh/MRU Freshers_Logo.png" alt="work">
-                        </div>
-                        <div class="work-overlay">
-                            <div class="work-content">
-                                <h3 class="work-title">MRU Freshers</h3>
-                                <ul>
-                                    <li><a data-toggle="modal" data-target="#portfolioModal1"><i
-                                                class="lni-plus"></i></a></li>
-                                    <li><a href="#"><i class="lni-link"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div> <!-- single work -->
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-work text-center mt-30">
-                        <div class="work-image border">
-                            <img src="assets/images/Vaccine_tracker/Vaccine_Logo.png" alt="work">
-                        </div>
-                        <div class="work-overlay">
-                            <div class="work-content">
-                                <h3 class="work-title">Vaccine Tracker</h3>
-                                <ul>
-                                    <li><a data-toggle="modal" data-target="#portfolioModal2"><i
-                                                class="lni-plus"></i></a></li>
-                                    <li><a href="#"><i class="lni-link"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div> <!-- single work -->
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-work text-center mt-30">
-                        <div class="work-image border">
-                            <img src="assets/images/content_aggregator/content_aggregator_logo.png" alt="work">
-                        </div>
-                        <div class="work-overlay">
-                            <div class="work-content">
-                                <h3 class="work-title">Content Aggregator</h3>
-                                <ul>
-                                    <li><a data-toggle="modal" data-target="#portfolioModal3"><i
-                                                class="lni-plus"></i></a></li>
-                                    <li><a href="#"><i class="lni-link"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div> <!-- single work -->
-                </div>
-
-                <!-- <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-work text-center mt-30">
-                        <div class="work-image border">
-                            <img src="assets/images/real-time_chat/front_dj.png" alt="work">
-                        </div>
-                        <div class="work-overlay">
-                            <div class="work-content">
-                                <h3 class="work-title">Real-Time ChatApp</h3>
-                                <ul>
-                                    <li><a data-toggle="modal" data-target="#portfolioModal4"><i
-                                                class="lni-plus"></i></a></li>
-                                    <li><a href="#"><i class="lni-link"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-work text-center mt-30">
-                        <div class="work-image border">
-                            <img src="assets/images/mobile-app/kivy1.jpg" alt="work">
-                        </div>
-                        <div class="work-overlay">
-                            <div class="work-content">
-                                <h3 class="work-title">How do you feel Mobile App</h3>
-                                <ul>
-                                    <li><a data-toggle="modal" data-target="#portfolioModal5"><i
-                                                class="lni-plus"></i></a></li>
-                                    <li><a href="#"><i class="lni-link"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div> 
-                </div> -->
-
-
-            </div> <!-- container -->
-    </section>
-
-    <!--====== WORK PART ENDS ======-->
-
-    <!--====== CONTACT PART START ======-->
-
-    <section id="contact" class="contact-area pt-125 pb-130 gray-bg">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-title text-center pb-25">
-                        <h2 class="title">Get In Touch</h2>
-                        <p>Let's Connect and Bring Your Ideas to Life - Reach Out to Me Today!</p>
-                    </div> <!-- section title -->
-                </div>
-            </div> <!-- row -->
-            <div class="row justify-content-center">
-                <!-- <div class="col-lg-4 col-md-6 col-sm-7">
-                    <div class="contact-box text-center mt-30">
-                        <div class="contact-icon">
-                            <i class="lni-phone-handset"></i>
-                        </div>
-                        <div class="contact-content">
-                            <h6 class="contact-title">Phone</h6>
-                            <p>+91 9667743366</p>
-                        </div>
-                    </div> 
-                </div> -->
-                <div class="col-lg-4 col-md-6 col-sm-7">
-                    <div class="contact-box text-center mt-30">
-                        <div class="contact-icon">
-                            <i class="lni-envelope"></i>
-                        </div>
-                        <div class="contact-content">
-                            <h6 class="contact-title">Email</h6>
-                            <p>amarjeetsingh4333@gmail.com</p>
-                        </div>
-                    </div> <!-- contact box -->
-                </div>
-            </div> <!-- row -->
-            <!-- row -->
-        </div> <!-- container -->
-    </section>
-
-    <!--====== CONTACT PART ENDS ======-->
-
-    <!--====== FOOTER PART START ======-->
-
-    <footer id="footer" class="footer-area">
-        <div class="footer-widget pt-50 pb-50">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="footer-content text-center">
-
-                            <ul>
-                                <li><a href="https://www.github.com/amarjeet2003" target="_blank"><i class="lni-github-original"></i></a></li>
-                                <li><a href="https://www.linkedin.com/in/amarjeet2003/" target="_blank"><i class="lni-linkedin-original"></i></a></li>
-                                <li><a href="mailto:amarjeetsingh4333@gmail.com"><i class="lni lni-popup"></i></a></li>
-                            </ul>
-                            <div class="copyright py-4 text-center">
-                                © 2024 Amarjeet Singh
-                            </div>
-                        </div>
-                        <!-- footer content -->
+            <div class="hero-grid">
+                <div>
+                    <div class="badge-status reveal"><span class="pulse"></span> Available for opportunities · Gurgaon, India</div>
+                    <h1 class="reveal d1">Hi, I'm <span class="grad-text">Amarjeet Singh</span></h1>
+                    <div class="role reveal d2">
+                        <span class="typed" id="typed"></span><span class="cursor">_</span>
                     </div>
-                </div> <!-- row -->
-            </div> <!-- container -->
-        </div> <!-- footer widget -->
+                    <p class="lede reveal d3">
+                        Backend Software Engineer with 2+ years building and scaling
+                        high-throughput systems — Golang & Python microservices, event-driven
+                        pipelines, and Redis-backed services running on Kubernetes.
+                    </p>
+                    <div class="hero-actions reveal d4">
+                        <a href="#projects" class="btn btn-primary">View My Work <i class="devicon-arrow"></i>→</a>
+                        <a href="AmarjeetS_SRE_Resume.pdf" target="_blank" class="btn btn-ghost">📄 Download Résumé</a>
+                    </div>
+                    <div class="hero-socials reveal d4">
+                        <a href="https://github.com/amarjeet2003" target="_blank" aria-label="GitHub"><i class="devicon-github-original"></i></a>
+                        <a href="https://www.linkedin.com/in/amarjeet-singh-b74526205/" target="_blank" aria-label="LinkedIn"><i class="devicon-linkedin-plain"></i></a>
+                        <a href="mailto:amarjeetsingh4333@gmail.com" aria-label="Email"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 7 9 6 9-6"/></svg></a>
+                    </div>
+                </div>
 
-        </div> <!-- footer widget -->
+                <div class="reveal d2">
+                    <div class="terminal" id="tilt">
+                        <div class="term-bar">
+                            <span class="d r"></span><span class="d y"></span><span class="d g"></span>
+                            <span class="fn">~/amarjeet/engineer.go</span>
+                        </div>
+                        <div class="term-body">
+<span class="ln"><span class="t-key">package</span> main</span>
+<span class="ln"> </span>
+<span class="ln"><span class="t-key">type</span> <span class="t-fn">Engineer</span> <span class="t-key">struct</span> {</span>
+<span class="ln">    Role     <span class="t-str">"Backend Software Engineer"</span></span>
+<span class="ln">    Exp      <span class="t-num">2</span>+ years</span>
+<span class="ln">    Stack    []<span class="t-str">{Golang, Python, Kafka}</span></span>
+<span class="ln">    Scale    <span class="t-str">"10K+ RPS · 1M+ events/day"</span></span>
+<span class="ln">    Cloud    <span class="t-str">"AWS · Azure · Kubernetes"</span></span>
+<span class="ln">}</span>
+<span class="ln"> </span>
+<span class="ln"><span class="t-key">func</span> (e Engineer) <span class="t-fn">Build</span>() <span class="t-str">string</span> {</span>
+<span class="ln">    <span class="t-key">return</span> <span class="t-str">"reliable systems ⚡"</span></span>
+<span class="ln">}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section style="padding-top:0" id="stats-sec">
+        <div class="container">
+            <div class="stats">
+                <div class="stat reveal"><div class="num"><span class="count" data-to="2" data-suffix="+">0</span></div><div class="lbl">Years Experience</div></div>
+                <div class="stat reveal d1"><div class="num"><span class="count" data-to="10" data-suffix="K+">0</span></div><div class="lbl">Requests / Second</div></div>
+                <div class="stat reveal d2"><div class="num"><span class="count" data-to="1" data-suffix="M+">0</span></div><div class="lbl">Events / Day Processed</div></div>
+                <div class="stat reveal d3"><div class="num"><span class="count" data-to="99" data-suffix="%">0</span></div><div class="lbl">Service Success Rate</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="reveal">
+                    <div class="eyebrow">About Me</div>
+                    <h2 class="sec-title" style="text-align:left">Engineering systems that <span class="grad-text">scale & stay up</span></h2>
+                    <p style="margin-top:22px">
+                        I'm a backend engineer who enjoys the hard parts — <strong>concurrency, throughput,
+                        fault tolerance and observability</strong>. At iOL I design Golang microservices and
+                        event-driven pipelines that handle production traffic at scale.
+                    </p>
+                    <p>
+                        My day-to-day spans <strong>high-throughput APIs, Kafka & Azure Service Bus pipelines,
+                        Redis caching, ETL with Airflow</strong>, and keeping it all healthy with New Relic and
+                        Grafana. I care about systems that are reliable, idempotent and easy to reason about.
+                    </p>
+                    <p>
+                        I work <strong>AI-first</strong> — <strong>Claude and Cursor</strong> are part of my daily
+                        driver, and I lean on LLMs and embeddings to design, refactor, debug and ship faster. I've
+                        also shipped AI into production, from Gemini-embedding deduplication to OpenAI-powered services.
+                    </p>
+                    <div class="about-tags">
+                        <span>Distributed Systems</span>
+                        <span>Microservices</span>
+                        <span>Event-Driven</span>
+                        <span>Observability</span>
+                        <span>AI-Augmented</span>
+                        <span>Cloud Native</span>
+                    </div>
+                </div>
+                <div class="reveal d2">
+                    <div class="info-card">
+                        <div class="info-row">
+                            <div class="ic">💼</div>
+                            <div><div class="k">Current Role</div><div class="v">Software Engineer @ iOL</div></div>
+                        </div>
+                        <div class="info-row">
+                            <div class="ic">🎓</div>
+                            <div><div class="k">Education</div><div class="v">B.Tech CSE · 8.92 GPA · MRU</div></div>
+                        </div>
+                        <div class="info-row">
+                            <div class="ic">📍</div>
+                            <div><div class="k">Location</div><div class="v">Gurgaon, Haryana, India</div></div>
+                        </div>
+                        <div class="info-row">
+                            <div class="ic">📝</div>
+                            <div><div class="k">Recognition</div><div class="v">IEEE Published · AWS Academy Grad</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+        <div class="container">
+            <div class="sec-head reveal">
+                <div class="eyebrow">Career Path</div>
+                <h2 class="sec-title">Work <span class="grad-text">Experience</span></h2>
+                <p class="sec-sub">Where I've built, scaled and shipped production systems.</p>
+            </div>
+            <div class="timeline">
+                <div class="tl-item reveal">
+                    <div class="tl-time">OCT 2024 — PRESENT</div>
+                    <div class="tl-card">
+                        <div class="tl-role">Software Engineer</div>
+                        <div class="tl-co">Illusions Online Tech India (iOL) · Gurgaon</div>
+                        <ul>
+                            <li>Designed a high-throughput <b>room-mapping microservice</b> in Golang, Redis & PostgreSQL handling <b>10K+ RPS at 99%+ success</b>, using goroutines, channels, caching and load balancing on Kubernetes (AKS).</li>
+                            <li>Built scalable <b>ETL pipelines</b> with Golang & Apache Airflow ingesting from SQL Server, Elasticsearch and external APIs to power booking, demand and pricing analytics.</li>
+                            <li>Developed an <b>event-driven architecture</b> on Azure Service Bus processing <b>~1M events/day</b> with idempotency, fault tolerance and async processing.</li>
+                            <li>Added <b>observability</b> via New Relic — centralized logging, custom metrics and alerts across distributed services.</li>
+                        </ul>
+                        <div class="tl-stack">
+                            <span>Golang</span><span>Redis</span><span>PostgreSQL</span><span>Kubernetes</span><span>Airflow</span><span>Azure Service Bus</span><span>New Relic</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tl-item reveal">
+                    <div class="tl-time">JUN 2024 — SEP 2024</div>
+                    <div class="tl-card">
+                        <div class="tl-role">Software Engineer Intern</div>
+                        <div class="tl-co">Illusions Online Tech India (iOL) · Gurgaon</div>
+                        <ul>
+                            <li>Built <b>data matching & deduplication</b> services in Python using cosine similarity and Gemini embeddings to detect duplicate hotel rooms across suppliers; deployed on Azure Web App.</li>
+                            <li>Improved entity resolution in large-scale hotel databases, <b>reducing redundancy by 30%+</b>.</li>
+                        </ul>
+                        <div class="tl-stack"><span>Python</span><span>Embeddings</span><span>Azure</span><span>NLP</span></div>
+                    </div>
+                </div>
+                <div class="tl-item reveal">
+                    <div class="tl-time">JUN 2023 — JUL 2023</div>
+                    <div class="tl-card">
+                        <div class="tl-role">Python Software Engineer Intern</div>
+                        <div class="tl-co">Virtuaqaptive Consulting Services · Remote</div>
+                        <ul>
+                            <li>Built a Django <b>meeting-transcription system</b> with AssemblyAI & OpenAI, integrated with Google Meet, MS Teams and Zoom.</li>
+                            <li>Deployed on AWS (EC2, S3, CloudWatch) with Docker and CI/CD for high availability.</li>
+                        </ul>
+                        <div class="tl-stack"><span>Django</span><span>OpenAI</span><span>AssemblyAI</span><span>AWS</span><span>Docker</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <div class="container">
+            <div class="sec-head reveal">
+                <div class="eyebrow">Tech Stack</div>
+                <h2 class="sec-title">Skills & <span class="grad-text">Tools</span></h2>
+                <p class="sec-sub">The technologies I use to design, build and operate backend systems.</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-cat reveal">
+                    <h4><i class="devicon-go-original-wordmark colored"></i> Languages & Frameworks</h4>
+                    <div class="chip-grid">
+                        <span class="chip"><i class="devicon-go-original-wordmark colored"></i> Golang</span>
+                        <span class="chip"><i class="devicon-python-plain colored"></i> Python</span>
+                        <span class="chip"><i class="devicon-django-plain colored"></i> Django</span>
+                        <span class="chip"><i class="devicon-flask-plain"></i> Flask</span>
+                        <span class="chip"><i class="devicon-fastapi-plain colored"></i> FastAPI</span>
+                        <span class="chip">🔌 REST APIs</span>
+                    </div>
+                </div>
+                <div class="skill-cat reveal d1">
+                    <h4><i class="devicon-postgresql-plain colored"></i> Data & Messaging</h4>
+                    <div class="chip-grid">
+                        <span class="chip"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+                        <span class="chip"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+                        <span class="chip"><i class="devicon-redis-plain colored"></i> Redis</span>
+                        <span class="chip"><i class="devicon-elasticsearch-plain colored"></i> Elasticsearch</span>
+                        <span class="chip"><i class="devicon-apachekafka-original"></i> Kafka</span>
+                        <span class="chip"><i class="devicon-celery-plain"></i> Celery</span>
+                    </div>
+                </div>
+                <div class="skill-cat reveal d2">
+                    <h4><i class="devicon-amazonwebservices-plain-wordmark colored"></i> Cloud & DevOps</h4>
+                    <div class="chip-grid">
+                        <span class="chip"><i class="devicon-amazonwebservices-plain-wordmark colored"></i> AWS</span>
+                        <span class="chip"><i class="devicon-azure-plain colored"></i> Azure</span>
+                        <span class="chip"><i class="devicon-kubernetes-plain colored"></i> Kubernetes</span>
+                        <span class="chip"><i class="devicon-docker-plain colored"></i> Docker</span>
+                        <span class="chip"><i class="devicon-apacheairflow-plain colored"></i> Airflow</span>
+                        <span class="chip"><i class="devicon-heroku-original colored"></i> Heroku</span>
+                    </div>
+                </div>
+                <div class="skill-cat reveal">
+                    <h4><i class="devicon-grafana-original colored"></i> Observability</h4>
+                    <div class="chip-grid">
+                        <span class="chip"><i class="devicon-grafana-original colored"></i> Grafana</span>
+                        <span class="chip">📊 New Relic</span>
+                        <span class="chip">📈 Custom Metrics</span>
+                        <span class="chip">🔔 Alerting</span>
+                    </div>
+                </div>
+                <div class="skill-cat reveal d1">
+                    <h4><i class="devicon-git-plain colored"></i> Engineering Practices</h4>
+                    <div class="chip-grid">
+                        <span class="chip"><i class="devicon-git-plain colored"></i> Git</span>
+                        <span class="chip"><i class="devicon-github-original"></i> GitHub</span>
+                        <span class="chip">🔁 CI/CD</span>
+                        <span class="chip">🧪 Unit Testing</span>
+                        <span class="chip">⚡ Concurrency</span>
+                        <span class="chip">🧩 System Design</span>
+                    </div>
+                </div>
+                <div class="skill-cat ai-feature reveal d2">
+                    <h4>✨ AI-Augmented Development <span class="ai-badge">DAILY DRIVER</span></h4>
+                    <div class="chip-grid">
+                        <span class="chip"><img src="assets/images/ai/claude.svg" alt="Claude"> Claude</span>
+                        <span class="chip"><img src="assets/images/ai/cursor.svg" alt="Cursor"> Cursor</span>
+                        <span class="chip"><img src="assets/images/ai/openai.svg" alt="OpenAI"> OpenAI</span>
+                        <span class="chip"><img src="assets/images/ai/gemini.svg" alt="Gemini"> Gemini</span>
+                        <span class="chip">💬 Prompt Engineering</span>
+                        <span class="chip">🔎 RAG &amp; Embeddings</span>
+                        <span class="chip">🤝 AI Pair Programming</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <div class="container">
+            <div class="sec-head reveal">
+                <div class="eyebrow">Portfolio</div>
+                <h2 class="sec-title">Engineering <span class="grad-text">Highlights</span></h2>
+                <p class="sec-sub">Production systems I've designed and shipped at scale — plus a few things I build for fun.</p>
+            </div>
+
+            <div class="fl-grid">
+                <div class="flagship tilt-card reveal">
+                    <div class="fl-head">
+                        <div class="fl-icon">🗺️</div>
+                        <div class="fl-titles">
+                            <h3>Room-Mapping Microservice</h3>
+                            <div class="ptag">Golang · Redis · PostgreSQL · Kubernetes (AKS)</div>
+                        </div>
+                        <span class="fl-label">iOL · IN PRODUCTION</span>
+                    </div>
+                    <p>A high-throughput service that maps and deduplicates hotel rooms across multiple suppliers in real time. Built for concurrency from the ground up — goroutines & channels for parallel matching, Redis caching to cut redundant lookups, and horizontal load balancing on Kubernetes to absorb traffic spikes without breaking a sweat.</p>
+                    <div class="fl-metrics">
+                        <div class="m"><b>10K+</b><span>requests / second</span></div>
+                        <div class="m"><b>99%+</b><span>success rate</span></div>
+                        <div class="m"><b>AKS</b><span>auto load-balanced</span></div>
+                    </div>
+                    <div class="pstack"><span>Goroutines &amp; Channels</span><span>Redis Caching</span><span>Concurrency</span><span>Load Balancing</span><span>Kubernetes</span></div>
+                </div>
+
+                <div class="flagship tilt-card reveal">
+                    <div class="fl-head">
+                        <div class="fl-icon">📊</div>
+                        <div class="fl-titles">
+                            <h3>Pulse — Hotel &amp; Travel Analytics Platform</h3>
+                            <div class="ptag">Golang · Apache Airflow · PostgreSQL · Elasticsearch · Azure</div>
+                        </div>
+                        <span class="fl-label">iOL · IN PRODUCTION</span>
+                    </div>
+                    <p>An end-to-end analytics platform serving booking, demand and pricing insights. Architected as two tiers: a Go REST API (read side) backed by a fleet of Apache Airflow ETL pipelines (write side) that ingest from SQL Server, Elasticsearch and external APIs into PostgreSQL. An event-driven layer on Azure Service Bus processes ~1M events/day with idempotency and fault tolerance, and New Relic provides full observability across the distributed system.</p>
+                    <div class="fl-metrics">
+                        <div class="m"><b>~1M</b><span>events / day</span></div>
+                        <div class="m"><b>10+</b><span>ETL pipelines</span></div>
+                        <div class="m"><b>2-tier</b><span>read / write split</span></div>
+                    </div>
+                    <div class="pstack"><span>Event-Driven Architecture</span><span>ETL · Airflow</span><span>Azure Service Bus</span><span>Elasticsearch</span><span>New Relic</span><span>Idempotency</span></div>
+                </div>
+
+                <div class="flagship tilt-card reveal">
+                    <div class="fl-head">
+                        <div class="fl-icon">🧬</div>
+                        <div class="fl-titles">
+                            <h3>Hotel Room Deduplication Engine</h3>
+                            <div class="ptag">Python · Cosine Similarity · Gemini Embeddings · Azure</div>
+                        </div>
+                        <span class="fl-label">iOL</span>
+                    </div>
+                    <p>A data-matching and entity-resolution service that detects duplicate hotel rooms across suppliers using vector embeddings (Gemini) and cosine similarity. Deployed on Azure Web App, it measurably improved content integrity across large-scale hotel databases.</p>
+                    <div class="fl-metrics">
+                        <div class="m"><b>30%+</b><span>redundancy reduced</span></div>
+                        <div class="m"><b>NLP</b><span>embedding-based matching</span></div>
+                    </div>
+                    <div class="pstack"><span>Vector Embeddings</span><span>Cosine Similarity</span><span>Entity Resolution</span><span>Azure</span></div>
+                </div>
+            </div>
+
+            <div class="proj-subhead reveal">Personal Projects</div>
+
+            <div class="proj-grid">
+                <div class="proj tilt-card reveal">
+                    <span class="proj-badge">PAYMENTS</span>
+                    <div class="proj-top">
+                        <div class="proj-icon">🏠</div>
+                    </div>
+                    <h3>RentEase</h3>
+                    <div class="ptag">Python · Django · Razorpay</div>
+                    <p>A property-management platform for landlords & tenants with automated rent payments via Razorpay — handling initiation, verification and failure flows, secure idempotent webhook handlers, and a WhatsApp-based reminder & status-alert system.</p>
+                    <div class="pstack"><span>Django</span><span>Razorpay</span><span>Webhooks</span><span>WhatsApp API</span></div>
+                </div>
+
+                <div class="proj tilt-card reveal d1">
+                    <span class="proj-badge">IEEE PUBLISHED</span>
+                    <div class="proj-top">
+                        <div class="proj-icon">🎓</div>
+                    </div>
+                    <h3>UniVerse</h3>
+                    <div class="ptag">Django REST Framework · Azure</div>
+                    <p>A college event-management platform with user registration, an admin dashboard, clan-points tracking, OTP-based recovery, certificate generation and soft-delete accounts — powered by scalable Azure-hosted REST APIs. Published at an IEEE conference (Nov 2024).</p>
+                    <div class="pstack"><span>DRF</span><span>Azure</span><span>REST APIs</span><span>OTP Auth</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-wrap reveal">
+                <div class="eyebrow" style="justify-content:center;position:relative">Get In Touch</div>
+                <h2>Let's build something <span class="grad-text">great together</span></h2>
+                <p>Have a role, a project, or just want to talk distributed systems? My inbox is always open — I'll get back to you.</p>
+                <div class="contact-actions">
+                    <a href="mailto:amarjeetsingh4333@gmail.com" class="btn btn-primary"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 7 9 6 9-6"/></svg> Say Hello</a>
+                    <a href="https://www.linkedin.com/in/amarjeet-singh-b74526205/" target="_blank" class="btn btn-ghost"><i class="devicon-linkedin-plain"></i> Connect on LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site">
+        <div class="container">
+            <div class="foot-socials">
+                <a href="https://github.com/amarjeet2003" target="_blank" aria-label="GitHub"><i class="devicon-github-original"></i></a>
+                <a href="https://www.linkedin.com/in/amarjeet-singh-b74526205/" target="_blank" aria-label="LinkedIn"><i class="devicon-linkedin-plain"></i></a>
+                <a href="mailto:amarjeetsingh4333@gmail.com" aria-label="Email"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 7 9 6 9-6"/></svg></a>
+            </div>
+            <div class="copy">© <span id="year"></span> <b>Amarjeet Singh</b> · Designed & built with care.</div>
+        </div>
     </footer>
 
-    <!--====== FOOTER PART ENDS ======-->
-
-    <!--====== BACK TOP TOP PART START ======-->
-
-    <a href="#" class="back-to-top"><i class="lni-chevron-up"></i></a>
-
-    <!--====== BACK TOP TOP PART ENDS ======-->
-
-
-    <!--====== Portfolio Modals ======-->
-
-    <div class="portfolio-modal modal" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1"
-        aria-modal="true" role="dialog">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0"><button class="btn-close btn btn-secondary-outline" type="button"
-                        data-dismiss="modal" aria-label="Close">x</button></div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-3">Mru Freshers</h2>
-                                <!-- Icon Divider-->
-                                <!-- Portfolio Modal - Image-->
-                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img src="assets/images/MRUFresh/add_fresher.png" class="d-block w-100"
-                                                alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="assets/images/MRUFresh/celery_admin_panel.png"
-                                                class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="assets/images/MRUFresh/check_in_freshers.png"
-                                                class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="assets/images/MRUFresh/Successful_reg_email.png"
-                                                class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="assets/images/MRUFresh/fresher_pass_email.png"
-                                                class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="assets/images/MRUFresh/event_pass.png" class="d-block w-100"
-                                                alt="...">
-                                        </div>
-                                    </div>
-                                    <button class="carousel-control-prev" type="button"
-                                        data-target="#carouselExampleControls" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button"
-                                        data-target="#carouselExampleControls" data-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-                                </div>
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-4">This Project is built using Python and Django along with celery for
-                                    asynchronous background event pass
-                                    generation. It allows user to register a fresher and store its details. It sends
-                                    automatic event passes on the
-                                    registered email if user has paid successfully. It also has the functionality for
-                                    event check-in which can be done
-                                    by scanning the qr-code on the event pass. </p>
-                                <button class="btn btn-primary" data-dismiss="modal">
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="portfolio-modal modal" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2"
-        aria-modal="true" role="dialog">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0"><button class="btn-close btn btn-secondary-outline" type="button"
-                        data-dismiss="modal" aria-label="Close">x</button></div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-3">Vaccine Tracker
-                                </h2>
-                                <!-- Icon Divider-->
-                                <!-- Portfolio Modal - Image-->
-                                <div id="carouselVaccineControls" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img src="assets/images/Vaccine_tracker/vaccine_tracker1.png"
-                                                class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="assets/images/Vaccine_tracker/vaccine_tracker_searchAlert.png"
-                                                class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="assets/images/Vaccine_tracker/vaccination_slot_alert.png"
-                                                class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="assets/images/Vaccine_tracker/vaccine_tracker_ss.png"
-                                                class="d-block w-100" alt="...">
-                                        </div>
-                                    </div>
-                                    <button class="carousel-control-prev" type="button"
-                                        data-target="#carouselVaccineControls" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button"
-                                        data-target="#carouselVaccineControls" data-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-
-                                </div>
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-4">This Project is built using Python and Django along with API
-                                    implementation of Cowin which sends alerts based
-                                    on free Vaccine slots in the nearby area. It sends emails on available free vaccine
-                                    slots and also paid vaccine
-                                    slots based upon user selection</p>
-                                <button class="btn btn-primary" data-dismiss="modal">
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="portfolio-modal modal" id="portfolioModal3" tabindex="-1" aria-labelledby="portfolioModal3"
-        aria-modal="true" role="dialog">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0"><button class="btn-close btn btn-secondary-outline" type="button"
-                        data-dismiss="modal" aria-label="Close">x</button></div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-3">Content Aggregator
-                                </h2>
-                                <!-- Icon Divider-->
-                                <!-- Portfolio Modal - Image-->
-                                <div id="carouselContentControls" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img src="assets/images/content_aggregator/1.png" class="d-block w-100"
-                                                alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="assets/images/content_aggregator/2.png" class="d-block w-100"
-                                                alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="assets/images/content_aggregator/3.png" class="d-block w-100"
-                                                alt="...">
-                                        </div>
-                                    </div>
-                                    <button class="carousel-control-prev" type="button"
-                                        data-target="#carouselContentControls" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button"
-                                        data-target="#carouselContentControls" data-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-                                </div>
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-4 mt-3">This project is built using Python & Django with background
-                                    asynchronous process scheduled with django-apscheduler and frontend built using
-                                    Bootstrap. It loads the latest podcasts from The Real Python Podcast feed. It
-                                    uses a custom management console to automate personalized schedule. It also have
-                                    some basic unit tests to
-                                    check all database transactions along with HTTP Response check</p>
-                                <button class="btn btn-primary" data-dismiss="modal">
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="portfolio-modal modal" id="portfolioModal4" tabindex="-1" aria-labelledby="portfolioModal4"
-    aria-modal="true" role="dialog">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header border-0"><button class="btn-close btn btn-secondary-outline" type="button"
-                    data-dismiss="modal" aria-label="Close">x</button></div>
-            <div class="modal-body text-center pb-5">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <!-- Portfolio Modal - Title-->
-                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-3">Real-Time ChatApp
-                            </h2>
-                            <!-- Icon Divider-->
-                            <!-- Portfolio Modal - Image-->
-                            <div id="carouselChatControls" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="assets/images/real-time_chat/dj-chat.png" class="d-block w-100"
-                                            alt="...">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="assets/images/real-time_chat/2.png" class="d-block w-100"
-                                            alt="...">
-                                    </div>
-                                </div>
-                                <button class="carousel-control-prev" type="button"
-                                    data-target="#carouselChatControls" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button"
-                                    data-target="#carouselChatControls" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                            <!-- Portfolio Modal - Text-->
-                            <p class="mb-4 mt-3">This Project is made using Python & Django along with HTML, CSS, JavaScript. The real-time feature is implemented using AJAX and jQuery where user is able to chat with other users present in the same chat room.</p>
-                            <button class="btn btn-primary" data-dismiss="modal">
-                                Close Window
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="portfolio-modal modal" id="portfolioModal5" tabindex="-1" aria-labelledby="portfolioModal5"
-    aria-modal="true" role="dialog">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header border-0"><button class="btn-close btn btn-secondary-outline" type="button"
-                    data-dismiss="modal" aria-label="Close">x</button></div>
-            <div class="modal-body text-center pb-5">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <!-- Portfolio Modal - Title-->
-                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-3">How do you feel Mobile App
-                            </h2>
-                            <!-- Icon Divider-->
-                            <!-- Portfolio Modal - Image-->
-                            <div id="carouselMobileControls" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="assets/images/mobile-app/kivy2.png" class="d-block w-100"
-                                            alt="...">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="assets/images/mobile-app/kivy3.png" class="d-block w-100"
-                                            alt="...">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="assets/images/mobile-app/kivy4.png" class="d-block w-100"
-                                            alt="...">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="assets/images/mobile-app/kivy5.png" class="d-block w-100"
-                                            alt="...">
-                                    </div>
-                                </div>
-                                <button class="carousel-control-prev" type="button"
-                                    data-target="#carouselMobileControls" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button"
-                                    data-target="#carouselMobileControls" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                            <!-- Portfolio Modal - Text-->
-                            <p class="mb-4 mt-3">
-                                This Project is built using Python and Kivy. This App shows quotes based on user's input on mood (happy, sad 
-                                etc). I have used Kv Lang to design the frontend of the app. This app is successfully deployed on Android using 
-                                Python Buildozer library.
-                                </p>
-                            <button class="btn btn-primary" data-dismiss="modal">
-                                Close Window
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-    <!--====== jquery js ======-->
-    <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
-    <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
-
-    <!--====== Bootstrap js ======-->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-
-    <!--====== Magnific Popup js ======-->
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-
-    <!--====== Parallax js ======-->
-    <script src="assets/js/parallax.min.js"></script>
-
-    <!--====== Counter Up js ======-->
-    <script src="assets/js/waypoints.min.js"></script>
-    <script src="assets/js/jquery.counterup.min.js"></script>
-
-    <!--====== Ajax Contact js ======-->
-    <!-- <script src="assets/js/ajax-contact.js"></script> -->
-
-    <!--====== Appear js ======-->
-    <script src="assets/js/jquery.appear.min.js"></script>
-
-    <!--====== Validator js ======-->
-    <!-- <script src="assets/js/validator.min.js"></script> -->
-
-    <!--====== Main js ======-->
-    <script src="assets/js/main.js"></script>
-
-    <!-- Add before footer -->
-    <div class="floating-contact">
-        <a href="mailto:200390amarjeet@gmail.com" class="btn btn-primary rounded-circle">
-            <i class="lni-envelope"></i>
-        </a>
-    </div>
+    <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Remove any existing scroll event listeners
-            $(window).off('scroll');
-            
-            // Cache DOM elements and values
-            const nav = $(".navigation");
-            const navItems = $('.navbar-nav .nav-item');
-            const sections = $('section, header');
-            let ticking = false;
-            
-            // Throttled scroll handler
-            function onScroll() {
-                if (!ticking) {
-                    requestAnimationFrame(() => {
-                        const scrollPosition = window.pageYOffset + 100;
-                        
-                        // Sticky navigation - separate from main scroll spy for performance
-                        if (window.pageYOffset < 10) {
-                            nav.removeClass("sticky");
-                        } else if (!nav.hasClass("sticky")) {
-                            nav.addClass("sticky");
-                        }
-                        
-                        // Find the current section
-                        let currentSection = null;
-                        sections.each(function() {
-                            const sectionTop = this.offsetTop;
-                            const sectionBottom = sectionTop + this.offsetHeight;
-                            
-                            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                                currentSection = this.id;
-                                return false; // Break the loop
-                            }
-                        });
-                        
-                        // Update active state only if section changed
-                        if (currentSection) {
-                            navItems.removeClass('active');
-                            $(`.navbar-nav .nav-item a[href="#${currentSection}"]`).parent().addClass('active');
-                        }
-                        
-                        ticking = false;
-                    });
-                    
-                    ticking = true;
-                }
-            }
-            
-            // Attach optimized scroll handler
-            window.addEventListener('scroll', onScroll, { passive: true });
-            
-            // Smooth scroll handler
-            $('.page-scroll').on('click', function(e) {
-                e.preventDefault();
-                const target = $(this.hash);
-                if (target.length) {
-                    window.scrollTo({
-                        top: target.offset().top - 70,
-                        behavior: 'smooth'
-                    });
-                    
-                    navItems.removeClass('active');
-                    $(this).parent().addClass('active');
-                }
+    (function () {
+        "use strict";
+
+        /* ---------- Preloader ---------- */
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                document.getElementById('preloader').classList.add('hide');
+            }, 500);
+        });
+
+        /* ---------- Year ---------- */
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        /* ---------- Nav scroll state ---------- */
+        const nav = document.getElementById('nav');
+        const toTop = document.getElementById('toTop');
+        const sections = Array.from(document.querySelectorAll('section[id], section#home'));
+        const navAnchors = Array.from(document.querySelectorAll('.nav-links a.link'));
+
+        function onScroll() {
+            const y = window.pageYOffset;
+            nav.classList.toggle('scrolled', y > 30);
+            toTop.classList.toggle('show', y > 600);
+
+            // active link
+            let current = 'home';
+            document.querySelectorAll('section[id]').forEach(function (sec) {
+                if (y + 120 >= sec.offsetTop) current = sec.id;
+            });
+            navAnchors.forEach(function (a) {
+                a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+            });
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        /* ---------- Mobile menu ---------- */
+        const burger = document.getElementById('burger');
+        const navLinks = document.getElementById('navLinks');
+        burger.addEventListener('click', function () {
+            burger.classList.toggle('open');
+            navLinks.classList.toggle('open');
+        });
+        navLinks.querySelectorAll('a').forEach(function (a) {
+            a.addEventListener('click', function () {
+                burger.classList.remove('open');
+                navLinks.classList.remove('open');
             });
         });
+
+        /* ---------- Back to top ---------- */
+        toTop.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        /* ---------- Reveal on scroll ---------- */
+        const io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                    e.target.classList.add('in');
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+        /* ---------- Typed roles ---------- */
+        const roles = [
+            'Backend Software Engineer',
+            'Golang & Python Developer',
+            'Distributed Systems Builder',
+            'Problem Solver ⚡'
+        ];
+        const typedEl = document.getElementById('typed');
+        let ri = 0, ci = 0, deleting = false;
+        function type() {
+            const word = roles[ri];
+            typedEl.textContent = word.substring(0, ci);
+            if (!deleting && ci < word.length) {
+                ci++; setTimeout(type, 75);
+            } else if (!deleting && ci === word.length) {
+                deleting = true; setTimeout(type, 1600);
+            } else if (deleting && ci > 0) {
+                ci--; setTimeout(type, 35);
+            } else {
+                deleting = false; ri = (ri + 1) % roles.length; setTimeout(type, 350);
+            }
+        }
+        type();
+
+        /* ---------- Animated counters ---------- */
+        const counters = document.querySelectorAll('.count');
+        const cio = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (!e.isIntersecting) return;
+                const el = e.target;
+                const to = parseFloat(el.getAttribute('data-to'));
+                const suffix = el.getAttribute('data-suffix') || '';
+                const dur = 1400; const start = performance.now();
+                function tick(now) {
+                    const p = Math.min((now - start) / dur, 1);
+                    const eased = 1 - Math.pow(1 - p, 3);
+                    el.textContent = (Math.round(eased * to * 10) / 10).toString().replace(/\.0$/, '') + suffix;
+                    if (p < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+                cio.unobserve(el);
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(function (c) { cio.observe(c); });
+
+        /* ---------- Project spotlight (mouse follow) ---------- */
+        document.querySelectorAll('.proj').forEach(function (card) {
+            card.addEventListener('mousemove', function (ev) {
+                const r = card.getBoundingClientRect();
+                card.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
+                card.style.setProperty('--my', (ev.clientY - r.top) + 'px');
+            });
+        });
+
+        /* ---------- Terminal tilt ---------- */
+        const tilt = document.getElementById('tilt');
+        if (tilt && window.matchMedia('(pointer:fine)').matches) {
+            tilt.addEventListener('mousemove', function (ev) {
+                const r = tilt.getBoundingClientRect();
+                const px = (ev.clientX - r.left) / r.width - 0.5;
+                const py = (ev.clientY - r.top) / r.height - 0.5;
+                tilt.style.transform = 'perspective(900px) rotateY(' + (px * 8) + 'deg) rotateX(' + (-py * 8) + 'deg)';
+            });
+            tilt.addEventListener('mouseleave', function () {
+                tilt.style.transform = 'perspective(900px) rotateY(0) rotateX(0)';
+            });
+            tilt.style.transition = 'transform .2s ease';
+        }
+
+        /* ---------- Particle canvas ---------- */
+        const canvas = document.getElementById('particles');
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (canvas && !reduce) {
+            const ctx = canvas.getContext('2d');
+            let w, h, particles;
+            function resize() {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+                const count = Math.min(70, Math.floor(w / 22));
+                particles = Array.from({ length: count }, function () {
+                    return {
+                        x: Math.random() * w, y: Math.random() * h,
+                        vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
+                        r: Math.random() * 1.6 + 0.4
+                    };
+                });
+            }
+            resize();
+            window.addEventListener('resize', resize);
+            function draw() {
+                ctx.clearRect(0, 0, w, h);
+                for (let i = 0; i < particles.length; i++) {
+                    const p = particles[i];
+                    p.x += p.vx; p.y += p.vy;
+                    if (p.x < 0 || p.x > w) p.vx *= -1;
+                    if (p.y < 0 || p.y > h) p.vy *= -1;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(148,163,184,0.5)';
+                    ctx.fill();
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const q = particles[j];
+                        const dx = p.x - q.x, dy = p.y - q.y;
+                        const dist = dx * dx + dy * dy;
+                        if (dist < 14000) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+                            ctx.strokeStyle = 'rgba(56,189,248,' + (0.12 * (1 - dist / 14000)) + ')';
+                            ctx.lineWidth = 0.6;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+    })();
     </script>
 
 </body>
